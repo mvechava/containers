@@ -3,5 +3,5 @@
 FROM python:latest
 
 RUN pip install qiskit
-COPY emoticon.py Qconfig.py /
+COPY emoticon.py emoticon-real.py Qconfig.py /
 

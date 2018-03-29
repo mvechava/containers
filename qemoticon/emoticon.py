@@ -18,7 +18,7 @@ qc.x(qr[5])
 # ';' = 00111011
 # these differ only on the rightmost two bits
 qc.h(qr[9]) # create superposition on 9
-qc.cx(qr[9],qr[8]) # spread it to 8 with a cnot
+qc.cx(qr[9], qr[8]) # spread it to 8 with a cnot
 qc.x(qr[11])
 qc.x(qr[12])
 qc.x(qr[13])
@@ -29,12 +29,12 @@ for j in range(16):
     qc.measure(qr[j], cr[j])
 
 # run and get results
-results = qp.execute(["smiley_writer"], backend='ibmqx_hpc_qasm_simulator', shots=1024)
+results = qp.execute(["smiley_writer"], backend='ibmqx_qasm_simulator', shots=1024)
 stats = results.get_counts("smiley_writer")
 
 for i in iter(stats):
     prob = (stats.get(i) / 1024) * 100
-    char1 = chr(int(i[0:8],2))
-    char2 = chr(int(i[9:16],2))
+    char1 = chr(int(i[0:8], 2))
+    char2 = chr(int(i[9:16], 2))
 
-    print('{0}{1} - {2}%'.format(char1,char2,prob))
+    print('{0}{1} - {2}%'.format(char1, char2, prob))
